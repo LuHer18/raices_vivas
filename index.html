@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Raíces Vivas — Demo Sprint 1</title><link rel="stylesheet" href="styles.css"></head>
+<body>
+<header><div class="brand" onclick="show('explore')"><span>RV</span><b>Raíces Vivas</b></div><nav><button onclick="show('explore')">Explorar</button><button onclick="showReservations()">Mis solicitudes</button></nav></header>
+<main>
+<section id="explore" class="view active">
+<div class="hero"><small>Turismo comunitario</small><h1>Descubre experiencias auténticas en Colombia</h1><p>Filtra, conoce y solicita tu reserva.</p></div>
+<div class="filters panel">
+<label>Región<select id="region"><option value="">Todas</option><option>Caribe</option><option>Andina</option><option>Pacífica</option></select></label>
+<label>Idioma<select id="language"><option value="">Todos</option><option>Español</option><option>Inglés</option></select></label>
+<label>Duración<select id="duration"><option value="">Cualquiera</option><option value="corta">Hasta 3 h</option><option value="media">4 a 6 h</option><option value="larga">Más de 6 h</option></select></label>
+<label>Actividad<select id="type"><option value="">Todas</option><option>Gastronomía</option><option>Naturaleza</option><option>Cultura</option><option>Artesanía</option></select></label>
+<button class="primary" onclick="applyFilters()">Buscar</button><button onclick="resetFilters()">Limpiar</button>
+</div>
+<div class="heading"><div><small>Experiencias disponibles</small><h2>Encuentra una opción para ti</h2></div><span id="count"></span></div>
+<div id="cards" class="cards"></div><div id="empty" class="empty hidden"><h3>No encontramos experiencias</h3><p>Modifica los filtros.</p></div>
+</section>
+
+<section id="detail" class="view"><button class="back" onclick="show('explore')">← Volver</button><div id="detailContent"></div></section>
+
+<section id="reserve" class="view"><button class="back" onclick="showDetail(selected.id)">← Volver al detalle</button>
+<div class="cols"><section class="panel"><small>Solicitud de reserva</small><h2 id="reserveTitle"></h2>
+<form onsubmit="submitReservation(event)">
+<label>Fecha<input id="date" type="date" required></label>
+<label>Participantes<input id="participants" type="number" min="1" required></label>
+<label>Nombre<input id="name" required></label>
+<label>Correo<input id="email" type="email" required></label>
+<label>Teléfono<input id="phone" required></label>
+<div id="message" class="notice hidden"></div><button class="primary wide">Enviar solicitud</button></form></section>
+<aside id="summary" class="panel"></aside></div></section>
+
+<section id="confirmation" class="view"><div class="panel confirmation"><div class="ok">✓</div><small>Solicitud registrada</small><h2>Tu reserva quedó en estado Pendiente</h2><p>La comunidad anfitriona revisará tu solicitud.</p><div id="confirmationData"></div><button class="primary" onclick="showReservations()">Ver mis solicitudes</button></div></section>
+
+<section id="reservations" class="view"><button class="back" onclick="show('explore')">← Volver</button><div class="heading"><div><small>Seguimiento</small><h2>Mis solicitudes</h2></div></div><div id="reservationList" class="panel"></div></section>
+</main><footer>Demo académica — Sprint 1 · Raíces Vivas</footer><script src="app.js"></script></body></html>
